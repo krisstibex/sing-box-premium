@@ -2,12 +2,8 @@ name: Update sing-box
 
 on:
   workflow_dispatch: # 改为手动触发
-  push:
-    branches:
-      - main
-    paths-ignore:
-      - "README.md"
-      - ".github/workflows/*"
+  schedule:
+    - cron: "0 0 1,15 * *"
 
 jobs:
   go:
