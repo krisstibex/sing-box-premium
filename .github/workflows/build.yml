@@ -78,7 +78,7 @@ jobs:
       - name: Checkout `main`
         uses: actions/checkout@v4
         with:
-          repository: SagerNet/sing-box
+          repository: qjebbs/sing-box
           ref: main
           fetch-depth: 1
 
@@ -141,7 +141,6 @@ jobs:
           mv -f ./tmp-sing-box/compress/* ./sing-box/
           # `Release` cores for Windows
           mv -f ./tmp-sing-box/sing-box-release-windows-amd64/sing-box.exe ./sing-box/sing-box-release-windows-amd64.exe
-          mv -f ./tmp-sing-box/sing-box-release-windows-amd64-v3/sing-box.exe ./sing-box/sing-box-release-windows-amd64v3.exe
           mv -f ./tmp-sing-box/sing-box-release-windows-arm64/sing-box.exe ./sing-box/sing-box-release-windows-arm64.exe
 
       - name: Release and upload `sing-box` assets
@@ -155,20 +154,4 @@ jobs:
           file_glob: true
           file: ./sing-box/*
 
-      - name: Commit and push `sing-box` branch
-        run: |
-          cd ./sing-box/ || exit 1
-          git init
-          git config --local user.name "github-actions[bot]"
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git checkout -b sing-box
-          git add ./sing-box-release* && git commit -m "更新 sing-box 内核至 v${release_VERSION}"
-          git remote add origin "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}"
-          git push -f -u origin sing-box
 
-      - name: Purge jsDelivr CDN
-        run: |
-          cd ./sing-box/ || exit 1
-          for file in $(ls); do
-            curl -i "https://purge.jsdelivr.net/gh/${{ github.repository }}@sing-box/${file}"
-          done
