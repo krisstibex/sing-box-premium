@@ -134,8 +134,8 @@ jobs:
           mkdir -p ./sing-box/
           mv -f ./tmp-sing-box/compress/* ./sing-box/
           # `Release` cores for Windows
-          mv -f ./tmp-sing-box/sing-box-release-windows-amd64/sing-box.exe ./sing-box/sing-box-release-windows-amd64.exe
-          mv -f ./tmp-sing-box/sing-box-release-windows-arm64/sing-box.exe ./sing-box/sing-box-release-windows-arm64.exe
+          7z a ./sing-box/sing-box-release-windows-amd64.7z ./tmp-sing-box/sing-box-release-windows-amd64/sing-box.exe
+          7z a ./sing-box/sing-box-release-windows-arm64.7z ./tmp-sing-box/sing-box-release-windows-arm64/sing-box.exe
 
       - name: Calculate tag
         id: calculate_tag
