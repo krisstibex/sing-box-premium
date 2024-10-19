@@ -145,7 +145,7 @@ jobs:
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          release_name: sing-box
+          release_name: sing-box ${{ needs.release.outputs.release_version }}
           tag: ${{ steps.calculate_tag.outputs.tag }}
           body: "[sing-box](https://github.com/qjebbs/sing-box) Release with Proxy Provider"
           file_glob: true
