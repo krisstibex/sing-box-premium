@@ -127,12 +127,12 @@ jobs:
           archs=(amd64 armv7 arm64)
           new_name=(amd64 armv7 armv8)
           # `Release` cores
-          for((i=0;i<9;i++));do
+          for i in "${!archs[@]}"; do
             mv -f "./tmp-sing-box/sing-box-release-linux-${archs[i]}/sing-box" ./tmp-sing-box/CrashCore
             chmod +x ./tmp-sing-box/CrashCore
             tar --no-same-owner -czf "./tmp-sing-box/compress/sing-box-release-linux-${new_name[i]}.tar.gz" -C ./tmp-sing-box/ ./CrashCore
           done
-
+          
       - name: Move `sing-box` cores
         run: |
           mkdir -p ./sing-box/
