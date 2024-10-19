@@ -42,9 +42,7 @@ jobs:
       - name: Get `sing-box Release` version
         id: release
         run: |
-          git remote add sekai https://github.com/SagerNet/sing-box.git
-          git fetch --tags sekai
-          release_version=$(CGO_ENABLED=0 go run ./cmd/internal/read_tag)
+          release_version=$(curl -s https://api.github.com/repos/SagerNet/sing-box/releases/latest | grep tag_name | cut -d ":" -f2 | sed 's/\"//g;s/\,//g;s/\ //g;s/v//')
           echo release_version=$release_version >> $GITHUB_OUTPUT
           echo release_tags=with_quic with_grpc with_dhcp with_wireguard with_ech with_utls with_reality_server with_acme with_clash_api with_v2ray_api with_gvisor >> $GITHUB_OUTPUT
 
@@ -126,8 +124,8 @@ jobs:
       - name: Zip `sing-box` cores by `tar`
         run: |
           mkdir -p ./tmp-sing-box/compress/
-          archs=(amd64 amd64-v3 armv5 armv6 armv7 arm64 mips-softfloat mipsle-hardfloat mipsle-softfloat)
-          new_name=(amd64 amd64v3 armv5 armv6 armv7 armv8 mips-softfloat mipsle-hardfloat mipsle-softfloat)
+          archs=(amd64 armv7 arm64)
+          new_name=(amd64 armv7 armv8)
           # `Release` cores
           for((i=0;i<9;i++));do
             mv -f "./tmp-sing-box/sing-box-release-linux-${archs[i]}/sing-box" ./tmp-sing-box/CrashCore
