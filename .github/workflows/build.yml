@@ -146,7 +146,7 @@ jobs:
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           release_name: sing-box
-          tag: ${release_VERSION}_$(date +%Y%m%d%H%M)
+          tag: $(date +%Y%m%d%H%M)
           body: "[sing-box](https://github.com/qjebbs/sing-box) Release with Proxy Provider"
           file_glob: true
           file: ./sing-box/*
