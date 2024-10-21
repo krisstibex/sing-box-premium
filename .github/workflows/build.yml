@@ -26,7 +26,7 @@ jobs:
       - name: Checkout `main`
         uses: actions/checkout@v4
         with:
-          repository: SagerNet/sing-box
+          repository: qjebbs/sing-box
           ref: main
           fetch-depth: 0
 
