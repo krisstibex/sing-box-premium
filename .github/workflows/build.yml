@@ -118,16 +118,16 @@ jobs:
           archs=(amd64 armv7 arm64)
           new_name=(amd64 armv7 armv8)
           for i in "${!archs[@]}"; do
-            mv -f "./tmp-sing-box/sing-box-release-linux-${archs[i]}/sing-box" ./tmp-sing-box/CrashCore
-            chmod +x ./tmp-sing-box/CrashCore
-            tar --no-same-owner -czf "./tmp-sing-box/compress/sing-box-release-linux-${new_name[i]}.tar.gz" -C ./tmp-sing-box/ ./CrashCore
+            mv -f "./tmp-sing-box/sing-box-release-linux-${archs[i]}/sing-box" ./tmp-sing-box/sing-box-premium
+            chmod +x ./tmp-sing-box/sing-box-premium
+            tar --no-same-owner -czf "./tmp-sing-box/compress/sing-box-release-linux-${new_name[i]}.tar.gz" -C ./tmp-sing-box/ ./sing-box-premium
           done
 
           # macOS
           for arch in amd64 arm64; do
-            mv -f "./tmp-sing-box/sing-box-release-darwin-${arch}/sing-box" ./tmp-sing-box/CrashCore
-            chmod +x ./tmp-sing-box/CrashCore
-            tar --no-same-owner -czf "./tmp-sing-box/compress/sing-box-release-darwin-${arch}.tar.gz" -C ./tmp-sing-box/ ./CrashCore
+            mv -f "./tmp-sing-box/sing-box-release-darwin-${arch}/sing-box" ./tmp-sing-box/sing-box-premium
+            chmod +x ./tmp-sing-box/sing-box-premium
+            tar --no-same-owner -czf "./tmp-sing-box/compress/sing-box-release-darwin-${arch}.tar.gz" -C ./tmp-sing-box/ ./sing-box-premium
           done
 
       - name: Move `sing-box` cores
