@@ -26,8 +26,8 @@ jobs:
       - name: Checkout `main`
         uses: actions/checkout@v4
         with:
-          repository: qjebbs/sing-box
-          ref: main
+          repository: CHIZI-0618/sing-box
+          ref: dev-next
           fetch-depth: 0
 
       - name: Setup `Go`
@@ -72,8 +72,8 @@ jobs:
       - name: Checkout `main`
         uses: actions/checkout@v4
         with:
-          repository: qjebbs/sing-box
-          ref: main
+          repository: CHIZI-0618/sing-box
+          ref: dev-next
           fetch-depth: 1
 
       - name: Setup `Go`
