@@ -53,6 +53,9 @@ jobs:
           # windows
           - { name: windows-amd64, goos: windows, goarch: amd64, goamd64: v1 }
           - { name: windows-arm64, goos: windows, goarch: arm64 }
+          # macOS
+          - { name: darwin-amd64, goos: darwin, goarch: amd64, goamd64: v1 }
+          - { name: darwin-arm64, goos: darwin, goarch: arm64 }
 
       fail-fast: false
     runs-on: ubuntu-latest
@@ -120,20 +123,27 @@ jobs:
       - name: Zip `sing-box` cores by `tar`
         run: |
           mkdir -p ./tmp-sing-box/compress/
+          # Linux
           archs=(amd64 armv7 arm64)
           new_name=(amd64 armv7 armv8)
-          # `Release` cores
           for i in "${!archs[@]}"; do
             mv -f "./tmp-sing-box/sing-box-release-linux-${archs[i]}/sing-box" ./tmp-sing-box/CrashCore
             chmod +x ./tmp-sing-box/CrashCore
             tar --no-same-owner -czf "./tmp-sing-box/compress/sing-box-release-linux-${new_name[i]}.tar.gz" -C ./tmp-sing-box/ ./CrashCore
           done
-          
+
+          # macOS
+          for arch in amd64 arm64; do
+            mv -f "./tmp-sing-box/sing-box-release-darwin-${arch}/sing-box" ./tmp-sing-box/CrashCore
+            chmod +x ./tmp-sing-box/CrashCore
+            tar --no-same-owner -czf "./tmp-sing-box/compress/sing-box-release-darwin-${arch}.tar.gz" -C ./tmp-sing-box/ ./CrashCore
+          done
+
       - name: Move `sing-box` cores
         run: |
           mkdir -p ./sing-box/
           mv -f ./tmp-sing-box/compress/* ./sing-box/
-          # `Release` cores for Windows
+          # Windows
           7z a ./sing-box/sing-box-release-windows-amd64.7z ./tmp-sing-box/sing-box-release-windows-amd64/sing-box.exe
           7z a ./sing-box/sing-box-release-windows-arm64.7z ./tmp-sing-box/sing-box-release-windows-arm64/sing-box.exe
 
@@ -150,5 +160,3 @@ jobs:
           body: "[sing-box](https://github.com/qjebbs/sing-box) Release with Proxy Provider"
           file_glob: true
           file: ./sing-box/*
-
-
