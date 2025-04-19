@@ -10,3 +10,15 @@ CGO_ENABLED=0 go build -v -trimpath -ldflags "-checklinkname=0 -X 'github.com/sa
 ## 使用说明
 * [官方文档](https://sing-box.sagernet.org/zh/configuration/)
 * [proxy-provider](https://github.com/CHIZI-0618/sing-box/blob/dev-next/docs/configuration/provider/index.zh.md)
+* 引用proxy-provider:
+```
+{
+    // 通过出站组引用，否则订阅不起作用。
+    "type": "selector", // selector, loadbalance, urltest...
+    "exclude": "",
+    "include": "",
+    "providers": [
+      "provider"
+    ]
+}
+```
