@@ -1,5 +1,5 @@
 # 自动构建sing box 内核
-* 支持 proxy provider
+* 支持 proxy-provider
 * full tag
 * 来自于[sing-box下游仓库](https://github.com/CHIZI-0618/sing-box)
 * 手动构建:
