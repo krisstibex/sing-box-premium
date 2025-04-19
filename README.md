@@ -22,3 +22,4 @@ CGO_ENABLED=0 go build -v -trimpath -ldflags "-checklinkname=0 -X 'github.com/sa
     ]
 }
 ```
+* 一个[示例配置](https://gist.githubusercontent.com/krisstibex/82ec9d8c05f0fb1a596d3d40739314c8/raw/config.json) 修改自[Lucy](https://github.com/Repcz)的[sing-box配置](https://raw.githubusercontent.com/Repcz/Tool/refs/heads/X/sing-box/Client/v1.12/config.json)
